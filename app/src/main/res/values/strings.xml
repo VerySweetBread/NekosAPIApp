@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">NekosAPI</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Nekos API</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">Развернуть</string>
+    <string name="close">Свернуть</string>
 </resources>

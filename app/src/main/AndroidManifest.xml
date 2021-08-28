@@ -11,17 +11,26 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
 
     <application
         android:allowBackup="true"
+        android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NekosAPIKotlin"
-        android:usesCleartextTraffic="true"
-        android:configChanges="orientation|screenSize">
+        android:usesCleartextTraffic="true">
+        <service
+            android:name=".UpdateHunter"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":updateHunterProcess"/>
+
+        <activity android:name=".Settings" />
+        <activity android:name=".About" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

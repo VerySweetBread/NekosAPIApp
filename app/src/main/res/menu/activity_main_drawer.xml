@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group >
+        <item
+            android:enabled="false"
+            android:title="Настройка профиля" />
+        <item
+            android:enabled="false"
+            android:title="История" />
+    </group>
+    <item android:title="Всякое">
+        <menu>
+            <item
+                android:id="@+id/about_button"
+                android:title="О проге" />
+        </menu>
+    </item>
+</menu>

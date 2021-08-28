@@ -1,6 +1,7 @@
 package meow.sweetbread.nekosapikotlin
 
 import android.content.Intent
+import android.content.pm.PackageInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager.getDefaultSharedPreferences
@@ -9,6 +10,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.FileNotFoundException
 import java.net.URL
 
 class SplashScreen : AppCompatActivity() {
@@ -17,7 +19,8 @@ class SplashScreen : AppCompatActivity() {
 
         val internalStorageDir = filesDir
         val context = this
-        val curVersion = "2.0.3"
+        val pInfo: PackageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0)
+        val curVersion = pInfo.versionName
 
         val FL = File(internalStorageDir, "FirstLaunch")
         if (!FL.exists()) FL.createNewFile()
@@ -27,10 +30,14 @@ class SplashScreen : AppCompatActivity() {
 
             GlobalScope.launch(Dispatchers.Main) {
                 var WN_text = ""
-                GlobalScope.async {
-                    WN_text = URL("http://koteika.ml/NA/${curVersion}/WN").readText()
+                try {
+                    GlobalScope.async {
+                        WN_text = URL("http://koteika.ml/NA/${curVersion}/WN").readText()
+                    }.await()
+                } catch (e: FileNotFoundException) {
+                    WN_text = "Че-та добавлено, но что - ХЗ\n(А вообще, это, типа, сообщение об ошибке)"
                 }
-                    .await()
+
                 val WN = File(internalStorageDir, "WhatsNew.txt")
                 if (!WN.exists()) WN.createNewFile()
                 WN.writeText(WN_text)
@@ -44,10 +51,13 @@ class SplashScreen : AppCompatActivity() {
 
                 GlobalScope.launch(Dispatchers.Main) {
                     var WN_text = ""
-                    GlobalScope.async {
-                        WN_text = URL("http://koteika.ml/NA/${curVersion}/WN").readText()
+                    try {
+                        GlobalScope.async {
+                            WN_text = URL("http://koteika.ml/NA/${curVersion}/WN").readText()
+                        }.await()
+                    } catch (e: FileNotFoundException) {
+                        WN_text = "Че-та добавлено, но что - ХЗ\n(А вообще, это, типа, сообщение об ошибке)"
                     }
-                        .await()
                     val WN = File(internalStorageDir, "WhatsNew.txt")
                     if (!WN.exists()) WN.createNewFile()
                     WN.writeText(WN_text)

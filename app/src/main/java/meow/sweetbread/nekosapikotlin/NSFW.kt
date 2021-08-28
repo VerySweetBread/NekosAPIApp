@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import java.util.*
 
 
 class NSFW : Fragment() {
@@ -17,7 +18,7 @@ class NSFW : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_nsfw, container, false)
+        val view = inflater.inflate(R.layout.fragment_nsfw, container, false)
 
         val linear = view.findViewById<LinearLayout>(R.id.NSFW_linear)
         val buttons = listOf("Erok", "lewdk", "Feetg", "Solog", "Gecg", "Erokemo", "Kuni", "Femdom",
@@ -25,9 +26,9 @@ class NSFW : Fragment() {
                 "Cum jpg", "Anal", "Random hentai gif", "Lewd neko", "Lesbian", "yuri",
                 "NSFW neko gif", "Pussy", "Pussy jpg", "Classic")
 
-        var primColor = listOf(229, 115, 115)
-        var endColor = listOf(183, 28, 28)
-        var colors = mutableListOf(0, 0, 0)
+        val primColor = listOf(229, 115, 115)
+        val endColor = listOf(183, 28, 28)
+        val colors = mutableListOf(0, 0, 0)
         for (i in 0..2) {
             colors[i] = (primColor[i]-endColor[i])/(buttons.size-1)
         }
@@ -85,7 +86,7 @@ class NSFW : Fragment() {
             }
 
             else -> {
-                i.putExtra("url", "https://nekos.life/api/v2/img/" + text.toLowerCase())
+                i.putExtra("url", "https://nekos.life/api/v2/img/" + text.lowercase())
                 i.putExtra("key", "url")
             }
         }

@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewerActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minWidth="500dp"
@@ -21,45 +22,44 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
-        android:id="@+id/panel"
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#40000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="Имя файла"
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/download_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="#00000000"
+            android:foregroundTint="@color/white"
+            app:srcCompat="@android:drawable/stat_sys_download_done" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:alpha="0.30"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:visibility="visible"
+        android:background="#40000000"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible">
+        app:menu="@menu/viewer_buttons">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/reload_button"
-            android:layout_width="173dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/ic_popup_sync" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/hide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/arrow_down_float" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/download_button"
-            android:layout_width="172dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            android:onClick="download"
-            app:srcCompat="@android:drawable/stat_sys_download_done" />
-    </LinearLayout>
-
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>
